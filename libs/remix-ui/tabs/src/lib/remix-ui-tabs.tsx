@@ -66,7 +66,7 @@ export const TabsUI = (props: TabsUIProps) => {
       <div className="d-flex flex-row justify-content-center align-items-center left-icon">
         <span data-id="tabProxyZoomOut" className="btn btn-sm px-1 fas fa-search-minus text-dark" title="Zoom out" onClick={() => props.onZoomOut()}></span>
         <span data-id="tabProxyZoomIn" className="btn btn-sm px-1 fas fa-search-plus text-dark" title="Zoom in" onClick={() => props.onZoomIn()}></span>
-        <i className="d-flex flex-row justify-content-center align-items-center far fa-sliders-v px-1" title="press F1 when focusing the editor to show advanced configuration settings"></i>
+        <i className="d-flex flex-row justify-content-center align-items-center far fa-info-square px-1" title="press F1 when focusing the editor to show advanced configuration settings"></i>
       </div>
       <Tabs className="tab-scroll" selectedIndex={selectedIndex} >
         <TabList>{props.tabs.map((tab, i) => <Tab key={tab.name}>{renderTab(tab, i)}</Tab>)}</TabList>
