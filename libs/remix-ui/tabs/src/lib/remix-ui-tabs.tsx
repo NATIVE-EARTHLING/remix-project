@@ -35,10 +35,10 @@ export const TabsUI = (props: TabsUIProps) => {
     const classNameImg = 'my-1 mr-1 text-dark ' + tab.iconClass
     const classNameTab = 'nav-item nav-link tab' + (index === currentIndexRef.current ? ' active' : '')
     return (
-      <div ref={el => { tabsRef.current[index] = el }} className={classNameTab} title={tab.tooltip}>
+      <div onClick={() => { props.onSelect(index); currentIndexRef.current = index; setSelectedIndex(index); }} ref={el => { tabsRef.current[index] = el }} className={classNameTab} title={tab.tooltip}>
         {tab.icon ? (<img className="my-1 mr-1 iconImage" src={tab.icon} />) : (<i className={classNameImg}></i>)}
         <span className="title-tabs">{tab.title}</span>
-        <span className="close-tabs" onClick={() => props.onClose(index)}>
+        <span className="close-tabs" onClick={(event) => { props.onClose(index); event.stopPropagation(); }}>
           <i className="text-dark fas fa-times"></i>
         </span>
       </div>
@@ -68,7 +68,7 @@ export const TabsUI = (props: TabsUIProps) => {
         <span data-id="tabProxyZoomIn" className="btn btn-sm px-1 fas fa-search-plus text-dark" title="Zoom in" onClick={() => props.onZoomIn()}></span>
         <i className="d-flex flex-row justify-content-center align-items-center far fa-sliders-v px-1" title="press F1 when focusing the editor to show advanced configuration settings"></i>
       </div>
-      <Tabs className="tab-scroll" selectedIndex={selectedIndex} onSelect={index => { props.onSelect(index); currentIndexRef.current = index; setSelectedIndex(index) }} >
+      <Tabs className="tab-scroll" selectedIndex={selectedIndex} >
         <TabList>{props.tabs.map((tab, i) => <Tab key={tab.name}>{renderTab(tab, i)}</Tab>)}</TabList>
         {props.tabs.map((tab) => <TabPanel key={tab.name} ></TabPanel>)}
       </Tabs>
